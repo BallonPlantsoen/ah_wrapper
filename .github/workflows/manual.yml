@@ -18,16 +18,20 @@ jobs:
       with:
         python-version: 3.12
     
+    - name: Install UV
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "latest"
+    
     - name: Install dependencies
       run: |
-        pip install -e .
-        pip install -r requirements-dev.txt
+        uv sync --extra dev
     
     - name: Run linting
       run: |
-        flake8 ah_wrapper/
-        black --check ah_wrapper/
+        uv run ruff check ah_wrapper/
+        uv run ruff format --check ah_wrapper/
     
     - name: Run tests
       run: |
-        pytest
+        uv run pytest 
