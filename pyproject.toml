@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "ah-wrapper"
@@ -16,14 +16,9 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
-requires-python = ">=3.7"
+requires-python = "==3.12"
 dependencies = [
     "requests>=2.25.0",
 ]
@@ -31,22 +26,29 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=6.0",
-    "black>=21.0",
-    "flake8>=3.8",
+    "ruff>=0.1.0",
 ]
 
 [project.scripts]
 ah-wrapper = "ah_wrapper.cli:main"
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["ah_wrapper*"]
-
-[tool.black]
+[tool.ruff]
 line-length = 88
-target-version = ['py37']
+target-version = "py37"
+exclude = [".git", "__pycache__", ".venv", "venv", ".eggs", "*.egg", "build", "dist"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "C4", "UP"]
+ignore = ["E203"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
-addopts = ["--strict-markers"] 
+addopts = ["--strict-markers"]
+
+[dependency-groups]
+dev = ["ruff>=0.1.0"]

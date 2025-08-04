@@ -4,8 +4,34 @@ Simple Python wrapper for Albert Heijn's API to search products and get prices.
 
 ## Install
 
+### Using UV (recommended)
+```bash
+# Install UV if you haven't already
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Install the package
+uv add ah-wrapper
+```
+
+### Using pip
 ```bash
 pip install ah-wrapper
+```
+
+## Development
+
+```bash
+# Clone and setup with UV
+git clone <repository-url>
+cd ah-wrapper
+uv sync --extra dev
+
+# Run tests
+uv run pytest
+
+# Run linting
+uv run flake8 ah_wrapper/
+uv run black --check ah_wrapper/
 ```
 
 ## Quick Start
