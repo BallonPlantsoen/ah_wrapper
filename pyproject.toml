@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ah-wrapper"
+version = "1.0.0"
+description = "Simple Python wrapper for Albert Heijn's API"
+readme = "README.md"
+license = "MIT"
+authors = [
+    {name = "AH Wrapper", email = "ah-wrapper@example.com"}
+]
+keywords = ["albert-heijn", "api", "wrapper", "products", "grocery"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "requests>=2.25.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "black>=21.0",
+    "flake8>=3.8",
+]
+
+[project.scripts]
+ah-wrapper = "ah_wrapper.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ah_wrapper*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py37']
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = ["--strict-markers"] 
