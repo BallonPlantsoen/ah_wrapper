@@ -10,12 +10,12 @@ Simple Python wrapper for Albert Heijn's API to search products and get prices.
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Install the package
-uv add ah-wrapper
+uv add https://github.com/BallonPlantsoen/ah_wrapper.git
 ```
 
 ### Using pip
 ```bash
-pip install ah-wrapper
+pip install git+https://github.com/BallonPlantsoen/ah_wrapper.git
 ```
 
 ## Development
